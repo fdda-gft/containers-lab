@@ -1,4 +1,8 @@
 FROM public.ecr.aws/docker/library/node:18
 WORKDIR /app
-RUN npm install express lodash axios
+
+# cria um package.json básico e instala dependências
+RUN npm init -y \
+  && npm install express lodash axios
+
 CMD ["node", "-e", "require('express')()"]
