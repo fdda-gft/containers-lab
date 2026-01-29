@@ -5,7 +5,7 @@ env:
     AWS_DEFAULT_REGION: "us-east-1"
     ACCOUNT_ID: "623653227376"
     REPO_NAME: "lab-inspector-containers-app"
-    IMAGE_TAG: "nginx"
+    IMAGE_TAG: "nginx-1"
     DOCKERFILE_PATH: "Dockerfile.nginx"
 
 phases:
