@@ -6,7 +6,7 @@ env:
     ACCOUNT_ID: "623653227376"
     REPO_NAME: "lab-inspector-containers-app"
     IMAGE_TAG: "node-1"
-    DOCKERFILE_PATH: "dockerfiles/Dockerfile.node"
+    DOCKERFILE_PATH: "Dockerfile.node"
 
 phases:
   pre_build:
