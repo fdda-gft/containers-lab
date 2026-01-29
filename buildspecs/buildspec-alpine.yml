@@ -1,0 +1,21 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_DEFAULT_REGION: "us-east-1"
+    ACCOUNT_ID: "623653227376"
+    REPO_NAME: "lab-inspector-containers-app"
+    IMAGE_TAG: "alpine-1"
+    DOCKERFILE_PATH: "Dockerfile.alpine"
+
+phases:
+  pre_build:
+    commands:
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin ${ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
+  build:
+    commands:
+      - docker build -f $DOCKERFILE_PATH -t ${REPO_NAME}:${IMAGE_TAG} .
+      - docker tag ${REPO_NAME}:${IMAGE_TAG} ${ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${REPO_NAME}:${IMAGE_TAG}
+  post_build:
+    commands:
+      - docker push ${ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${REPO_NAME}:${IMAGE_TAG}
